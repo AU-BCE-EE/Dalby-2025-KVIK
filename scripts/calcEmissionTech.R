@@ -116,7 +116,7 @@ emis_summary <- emis[, .(CH4_dyr_stald = unique(CH4_dyr_stald),
                          N2O_dyr_tot = unique(N2O_dyr_tot),
                          CO2_eq_fortræng = unique(CO2_eq_fortræng),
                          CO2_eq_tot = unique(CO2_eq_tot),
-                         totCO2_eq_tot = sum(totCO2_eq_tot)), by = c('Scenarie', 'model_gruppe')]
+                         totCO2_eq_tot = sum(totCO2_eq_tot, na.rm = T)), by = c('Scenarie', 'model_gruppe')]
 
 TotGoednabDyr <- setDT(read_excel('../output/TotGoedningabDyr.xlsx'))
 Tech_udb <- setDT(read_excel('../data/teknologi_udbredelse.xlsx'))
@@ -149,7 +149,7 @@ write.xlsx(out_pot_goedning, '../output/udbred_poten_kt_Goedn_år.xlsx')
 
 
 out_dyr <- copy(out)
-out_dyr <- out_dyr[potentiale != 0, .(sum_reduktion_totCO2_eq_tot = sum(reduktion_totCO2_eq_tot),
+out_dyr <- out_dyr[, .(sum_reduktion_totCO2_eq_tot = sum(reduktion_totCO2_eq_tot),
             mean_reduktion_totCO2_eq_tot_m3 = sum(reduktion_CO2_eq_tot_m3 * TotGoednabDyr_kt_year)/sum(TotGoednabDyr_kt_year),
             CH4_dyr_stald = sum(CH4_dyr_stald * TotGoednabDyr_kt_year)/sum(TotGoednabDyr_kt_year),
             CH4_dyr_lager = sum(CH4_dyr_lager * TotGoednabDyr_kt_year)/sum(TotGoednabDyr_kt_year),
