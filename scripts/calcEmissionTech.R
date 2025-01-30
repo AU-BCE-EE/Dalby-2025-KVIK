@@ -102,8 +102,8 @@ emis[, model_gruppe := 'char']
 emis[!grepl('biogas', Scenarie), ":="(CH4_dyr_biog = 0, totCH4_dyr_biog = 0)]
 emis[, ":="(CO2_eq_fortræng = CH4_dyr_biog * 2.32,
             totCO2_eq_fortræng = (totCH4_dyr_biog * 2.32)/1e+06)][
-              , ":="(CO2_eq_tot = CO2_eq_tot - CO2_eq_fortræng,
-                     totCO2_eq_tot = totCO2_eq_tot - totCO2_eq_fortræng)
+              , ":="(CO2_eq_tot = CO2_eq_tot,
+                     totCO2_eq_tot = totCO2_eq_tot)
             ]
 
 for(i in model_gruppe_navne){
