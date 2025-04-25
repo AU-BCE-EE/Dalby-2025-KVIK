@@ -3,8 +3,8 @@ rm(list = ls())
 library(data.table)
 library(readxl)
 
-dat_VS <- data.table(read_excel('../data/original/Til Anders Peter og Frederik 14122023.xlsx', sheet = 1, skip = 1))
-dat_anim <- data.table(read_excel('../data/original/Til Anders Peter og Frederik 14122023.xlsx', sheet = 2, skip = 1))
+dat_VS <- data.table(read_excel('../data/original/Til Anders Peter og Frederik 07112024.xlsx', sheet = 1, skip = 1))
+dat_anim <- data.table(read_excel('../data/original/Til Anders Peter og Frederik 07112024.xlsx', sheet = 2, skip = 1))
 
 #fix mismatch in names
 dat_anim[DyrNavn == 'Smågrise', DyrNavn := 'Smågrise, 7,5-30 kg']
